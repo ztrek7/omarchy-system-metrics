@@ -28,12 +28,12 @@ BarWidget {
   // Pin the widget to one interface instead of following the default route.
   readonly property string configuredInterface: setting("interface", "")
 
-  // What the latency cell measures the path to. The literal "gateway" probes
-  // the router instead, which separates a bad wifi link from a slow internet.
+  // What the latency cell measures the path to. "dns" discovers the system
+  // DNS server; "gateway" probes the router instead. This is ICMP latency.
   // Probed on its own slower timer: a round trip is not a counter to be read,
   // it is traffic, and one every couple of seconds is more than a glanceable
   // number needs.
-  readonly property string latencyTarget: setting("latencyTarget", "1.1.1.1")
+  readonly property string latencyTarget: setting("latencyTarget", "dns")
   readonly property bool latencyEnabled: items.some(function (item) {
     return ["ping", "latency"].indexOf(String(item).toLowerCase()) !== -1
   })
@@ -215,7 +215,8 @@ BarWidget {
     var link = activeInterface === "" ? "no default route" : activeInterface
     lines.push("Down " + formatBytes(rxRate, "/s") + "   Up " + formatBytes(txRate, "/s") + "   (" + link + ")")
     if (latencyEnabled)
-      lines.push("Latency " + (latencyMs < 0 ? "no answer" : formatLatency(latencyMs)) + " to " + latencyTarget)
+      lines.push("Ping " + (latencyMs < 0 ? "unavailable" : formatLatency(latencyMs))
+        + " to " + (latencyTarget === "dns" ? "configured DNS server" : latencyTarget))
     lines.push("Left click btop · right click nvtop")
     return lines.join("\n")
   }

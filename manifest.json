@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "io.github.ztrek7.system-metrics",
   "name": "System Metrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "ztrek7",
   "description": "CPU, RAM, NVIDIA GPU, network throughput, and configurable latency in the Omarchy bar",
   "kinds": [
