@@ -4,6 +4,10 @@ A compact bar widget for CPU usage, RAM usage, NVIDIA GPU utilization and
 memory, network throughput, and latency. Colors follow the active Omarchy
 theme, and the layout supports horizontal and vertical bars.
 
+![System Metrics widget showing CPU, RAM, GPU, network throughput, and latency](preview.png)
+
+*Preview rendered from the widget with sample readings; no live system data.*
+
 - Choose which metrics appear and their order.
 - Show alerts for high utilization or latency.
 - Follow the default network interface or choose one explicitly.
